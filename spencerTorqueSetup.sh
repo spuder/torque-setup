@@ -91,7 +91,7 @@ make install
 
 #8 Run torque setup
 cd $LOCALFOLDER
-./torque-setup root
+./torque.setup root
 
 
 
