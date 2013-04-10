@@ -1,0 +1,4 @@
+#./configure --prefix=/usr/local/torque4.0 --with-server-home=/var/spool/torque4.0
+
+svn list svn://clusterresources.com/torque
+./configure --prefix=/usr/local/torque2.5.9 --with-server-home=/var/spool/torque2.5.9
