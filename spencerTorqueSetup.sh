@@ -12,14 +12,12 @@
 #5. Run autoconfi && autogen
 #6. Run ./configure --with-debug --with-server-home=/var/spool/torque/{1} --prefix=/usr/local/torque/{1} --enable-docs
 #7. Run make 
-#8. Run ./torque-setup
-#9. Add torque to path through export or profile.d
-#10. Start trqauthd 
-#11. Run make packages
+#8. Add torque to path through export or profile.d
+#9. Run ./torque-setup
+#10. Run make packages
 #10. Ask if user would like to scp mom stuff to moms
 	#a. Yes - scp packages
 	#b. No - Do nothing
-#11. Make /etc/profile.d/torque.sh file
 #12. Add dummy file to /var/spool/torque/{1}/4.1.txt (See the moab script for explination on this)
 
 
@@ -50,15 +48,17 @@ fi
 #3. Download gcc, openssl-devel, git, hg, svn, libxml2-devel,libtool
 echo "Installing autogen, git, openssl ect.."
 yum install autoconf make autogen gcc gcc-c++ openssl-devel git hg svn libxml2-devel libtool -y | tee /tmp/spencerTorqueInstall
+yum install pkg-config -y | tee /tmp/spencerTorqueInstall #http://stackoverflow.com/questions/8811381/possibly-undefined-macro-ac-msg-error
 #yum install glibc
 #yum install libxcb-devel 
-
+#apt-get install  autoconf make autogen gcc gcc-c++ libtool git -y | tee /tmp/spencerTorqueInstall
+	#openssl-devel git libxml2-devel  -y | tee /tmp/spencerTorqueInstall
 
 #4 Download from Git
 
 REPOSITORY="git://github.com/adaptivecomputing/torque.git"
 
-LOCALFOLDER="/var/spool/torque/src"
+LOCALFOLDER="/var/spool/torque/github"
 
 
 # Two decision trees depending if we have already cloned the git source code
@@ -89,10 +89,15 @@ make clean
 make
 make install
 
-#8 Run torque setup
+#8 Add torque to path
+echo "export PATH=\$PATH:/var/spool/torque/sbin:/var/spool/torque/bin" > /etc/profile.d/torque.sh
+. /etc/profile.d/torque.sh
+
+#9 Run torque setup
 cd $LOCALFOLDER
 ./torque.setup root
 
-
-
+#10 Make packages
+cd $LOCALFOLDER
+make packages
 
