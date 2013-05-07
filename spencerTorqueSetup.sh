@@ -107,5 +107,6 @@ make packages
 
 echo "*********************************************************"
 echo "****** torque will be part of path with new shell *******"
+echo "****** type 'bash' to add client commands to path *******"
 echo "*********************************************************"
 
