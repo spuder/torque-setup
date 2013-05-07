@@ -62,6 +62,9 @@ LOCALFOLDER="/var/spool/torque/github"
 
 
 # Two decision trees depending if we have already cloned the git source code
+echo "** Checking if torque source already exits **"
+echo "** You may see an error message below, that is expected **"
+
 if [ "$(ls -A $LOCALFOLDER)" ]; then
 	echo "$LOCALFOLDER already exists, pulling existing repo!!!!"
     git pull
@@ -95,9 +98,14 @@ echo "export PATH=\$PATH:/var/spool/torque/sbin:/var/spool/torque/bin" > /etc/pr
 
 #9 Run torque setup
 cd $LOCALFOLDER
-./torque.setup root
+./torque.setup root #TODO, make this interactive
 
 #10 Make packages
 cd $LOCALFOLDER
 make packages
+
+
+echo "*********************************************************"
+echo "****** torque will be part of path with new shell *******"
+echo "*********************************************************"
 
