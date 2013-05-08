@@ -1,5 +1,4 @@
 class torque::pbs_server {
-  ##require puppetlabs-git
 user { 'root':
 	ensure  => present,
 }
@@ -16,7 +15,6 @@ case $operatingsystem {
 package {'openssl-devel':
 	name     => $openssl_devel,
 	ensure   => latest,
-  require => Package['puppetlabs-git'],
 }
 package {'git':
 	ensure => installed,
