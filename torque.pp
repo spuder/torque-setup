@@ -1,4 +1,4 @@
-class torque::pbs_server {
+class torque::prerequisites {
 user { 'root':
 	ensure  => present,
 }
@@ -33,7 +33,19 @@ package {'c++_compiler':
 package {'libtool': 
   ensure => installed,
 }
+package {'autoconf':
+  ensure => installed,
+}
+package {'autogen':
+  ensure => installed,
+}
+package {'make':
+  ensure => installed,
+}
+package {'pkg-config':
+  ensure => installed,
+}
 
 
 }
-class {'torque::pbs_server':}
+class {'torque::prerequisites':}
