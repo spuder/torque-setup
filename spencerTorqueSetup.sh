@@ -98,7 +98,7 @@ echo "export PATH=\$PATH:/var/spool/torque/sbin:/var/spool/torque/bin" > /etc/pr
 
 #9 Run torque setup
 cd $LOCALFOLDER
-./torque.setup root #TODO, make this interactive
+./torque.setup root `hostname -f`
 
 #10 Make packages
 cd $LOCALFOLDER
