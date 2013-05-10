@@ -105,7 +105,7 @@ cd $LOCALFOLDER
 cd $LOCALFOLDER
 /var/spool/torque/sbin/pbs_server -t create -f
 sleep 2
-echo set server managers +=root | /var/spool/torque/bin/qmgr
+echo set server managers +=root@`hostname -f` | /var/spool/torque/bin/qmgr
 /var/spool/torque/bin/qmgr -c 'set server scheduling = true'
 /var/spool/torque/bin/qmgr -c 'set server keep_completed = 300'
 /var/spool/torque/bin/qmgr -c 'set server mom_job_sync = true'
