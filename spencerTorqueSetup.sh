@@ -103,6 +103,8 @@ cd $LOCALFOLDER
 # https://github.com/adaptivecomputing/torque/issues/144
 
 cd $LOCALFOLDER
+/var/spool/torque/sbin/trqauthd
+sleep 1
 /var/spool/torque/sbin/pbs_server -t create -f
 sleep 2
 echo set server managers +=root@`hostname -f` | /var/spool/torque/bin/qmgr
