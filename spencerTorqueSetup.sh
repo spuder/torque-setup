@@ -98,8 +98,14 @@ echo "export PATH=\$PATH:/var/spool/torque/sbin:/var/spool/torque/bin" > /etc/pr
 
 #9 Run torque setup
 cd $LOCALFOLDER
-#./torque.setup root `hostname -f` #This does not work because of the interactive mode 
+./torque.setup root `hostname -f` #This will fail because you must pass a -f into the pbs_server -t create
+# Workaround is to call ./torque.setup then call pbs_server -t create -f
 # https://github.com/adaptivecomputing/torque/issues/144
+
+qterm
+cd $LOCALFOLDER
+bash ./pbs_server -t create -f
+
 
 #10 Make packages
 cd $LOCALFOLDER
