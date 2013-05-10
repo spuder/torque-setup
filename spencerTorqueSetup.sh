@@ -117,7 +117,7 @@ echo set server managers +=root@`hostname -f` | /var/spool/torque/bin/qmgr
 /var/spool/torque/bin/qmgr -c 'create queue batch'
 /var/spool/torque/bin/qmgr -c 'set queue batch queue_type = execution'
 /var/spool/torque/bin/qmgr -c 'set queue batch started = true'
-/var/spool/toruqe/bin/qmgr -c 'set queue batch enabled = true'
+/var/spool/torque/bin/qmgr -c 'set queue batch enabled = true'
 /var/spool/torque/bin/qmgr -c 'set queue batch resources_default.walltime = 1:00:00'
 /var/spool/torque/bin/qmgr -c 'set queue batch resources_default.nodes = 1'
 
