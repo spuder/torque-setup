@@ -98,14 +98,28 @@ echo "export PATH=\$PATH:/var/spool/torque/sbin:/var/spool/torque/bin" > /etc/pr
 
 #9 Run torque setup
 cd $LOCALFOLDER
-./torque.setup root `hostname -f` #This will fail because you must pass a -f into the pbs_server -t create
+#./torque.setup root `hostname -f` #This will fail because you must pass a -f into the pbs_server -t create
 # Workaround is to call ./torque.setup then call pbs_server -t create -f
 # https://github.com/adaptivecomputing/torque/issues/144
 
 qterm
 cd $LOCALFOLDER
-bash ./pbs_server -t create -f
+bash /var/spool/torque/sbin/pbs_server -t create -f
+echo set server managers +=root | qmgr
+qmgr -c 'set server scheduling = true'
+qmgr -c 'set server keep_completed = 300'
+qmgr -c 'set server mom_job_sync = true'
 
+# create default queue
+
+qmgr -c 'create queue batch'
+qmgr -c 'set queue batch queue_type = execution'
+qmgr -c 'set queue batch started = true'
+qmgr -c 'set queue batch enabled = true'
+qmgr -c 'set queue batch resources_default.walltime = 1:00:00'
+qmgr -c 'set queue batch resources_default.nodes = 1'
+
+qmgr -c 'set server default_queue = batch'
 
 #10 Make packages
 cd $LOCALFOLDER
