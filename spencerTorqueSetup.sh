@@ -48,7 +48,7 @@ fi
 #3. Download gcc, openssl-devel, git, hg, svn, libxml2-devel,libtool
 echo "Installing autogen, git, openssl ect.."
 yum install autoconf make autogen gcc gcc-c++ openssl-devel git hg svn libxml2-devel libtool -y | tee /tmp/spencerTorqueInstall
-yum install pkg-config -y | tee /tmp/spencerTorqueInstall #http://stackoverflow.com/questions/8811381/possibly-undefined-macro-ac-msg-error
+yum install pkgconfig -y | tee /tmp/spencerTorqueInstall #http://stackoverflow.com/questions/8811381/possibly-undefined-macro-ac-msg-error
 #yum install glibc
 #yum install libxcb-devel 
 #apt-get install  autoconf make autogen gcc gcc-c++ libtool git -y | tee /tmp/spencerTorqueInstall
